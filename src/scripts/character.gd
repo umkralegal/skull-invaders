@@ -30,8 +30,11 @@ func _physics_process(_delta):
 		Behaviours.NONE:
 			position.x += movement.x * (speed * 5)
 		Behaviours.IA:
+			if position.y > 515:
+				PlayerController.player1.get_shot(1)
+				get_shot(999)
 			position.x += movement.x * (speed * 1)
-			position.y += 1 * (speed / 10.0)
+			position.y += 1 * 10#(speed / 10.0)
 			shoot()
 	position = Vector2(clamp(position.x, 0, Globals.screen_size.x), clamp(position.y, 0, Globals.screen_size.y))
 
@@ -63,7 +66,7 @@ func critical_shot():
 func get_shot(damage):
 	health -= damage
 	if health <= 0:
-		emit_signal("destroyed", self)
+		emit_signal("destroyed")
 		queue_free()
 	else:
 		$Tween.start()

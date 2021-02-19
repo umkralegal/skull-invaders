@@ -4,6 +4,7 @@ extends Node2D
 enum LevelStates {
 	LEVEL_START,
 	LEVEL_COMPLETE,
+	LEVEL_PROCESS,
 	GAME_OVER,
 }
 
@@ -34,7 +35,7 @@ func generate_enemies():
 
 func spawn_enemy():
 	var enemy = SKULL.instance()
-	enemy.connect("destroyed", self, "remove_enemy")
+	enemy.connect("destroyed", self, "remove_enemy",[enemy])
 	enemies.append(enemy)
 	enemy.add_to_group("is:enemy")
 	enemy.shot_cooldown = (randf() * 5.0) + 5.0
@@ -60,8 +61,8 @@ func level_up():
 			enemy.queue_free()
 	game_level += 1
 	$Label.show()
-	$Timer.start(3)
-	level_state = LevelStates.LEVEL_COMPLETE
+	$Timer.start(0.1)
+	level_state = LevelStates.LEVEL_PROCESS
 	$Label.text = "LEVEL %d" % game_level
 
 
@@ -71,7 +72,7 @@ func update_game():
 	pass
 
 
-func game_over(_player):
+func game_over():
 	get_tree().call_group("is:enemy", "queue_free")
 	enemies = []
 	get_tree().call_group("is:bullet", "queue_free")
@@ -86,6 +87,13 @@ func _on_Timer_timeout():
 		LevelStates.LEVEL_START:
 			$Label.hide()
 			new_level()
+
+		LevelStates.LEVEL_PROCESS:
+			if PlayerController.player1:
+				level_state = LevelStates.LEVEL_COMPLETE
+				$Timer.start(0.1)
+			else:
+				game_over()
 
 		LevelStates.LEVEL_COMPLETE:
 			$Label.hide()
