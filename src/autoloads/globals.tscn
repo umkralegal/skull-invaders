@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+onready var screen_size = get_viewport_rect().size
+"
+
+[node name="Globals" type="Node2D"]
+script = SubResource( 1 )
