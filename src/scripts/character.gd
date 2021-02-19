@@ -34,7 +34,7 @@ func _physics_process(_delta):
 				PlayerController.player1.get_shot(1)
 				get_shot(999)
 			position.x += movement.x * (speed * 1)
-			position.y += 1 * 10#(speed / 10.0)
+			position.y += 1 * (speed / 10.0)
 			shoot()
 	position = Vector2(clamp(position.x, 0, Globals.screen_size.x), clamp(position.y, 0, Globals.screen_size.y))
 
@@ -46,18 +46,6 @@ func shoot():
 		shot.faction = self.faction
 		shot.shooter = self
 		shot.critical_chance = critical_chance
-		shot.position = $ShotPosition.global_position
-		shot.speed = -shot.speed if shooting_up else shot.speed
-		get_parent().add_child(shot)
-
-
-func critical_shot():
-	if $Cooldown.is_stopped():
-		$Cooldown.start(shot_cooldown)
-		var shot = bullet.instance()
-		shot.faction = self.faction
-		shot.shooter = self
-		shot.critical_chance = 100.0
 		shot.position = $ShotPosition.global_position
 		shot.speed = -shot.speed if shooting_up else shot.speed
 		get_parent().add_child(shot)

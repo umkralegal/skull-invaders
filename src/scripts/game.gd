@@ -91,7 +91,7 @@ func _on_Timer_timeout():
 		LevelStates.LEVEL_PROCESS:
 			if PlayerController.player1:
 				level_state = LevelStates.LEVEL_COMPLETE
-				$Timer.start(0.1)
+				$Timer.start(2)
 			else:
 				game_over()
 
