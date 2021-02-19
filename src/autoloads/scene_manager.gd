@@ -1,4 +1,5 @@
 extends Node
+# Singleton for changing scene.
 
 
 var current_scene = null

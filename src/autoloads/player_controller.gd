@@ -1,7 +1,8 @@
 extends Node
+# Player controller singleton.
+
 
 var player1 = null
-var player2 = null
 
 
 func _physics_process(_delta):

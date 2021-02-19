@@ -1,8 +1,5 @@
 extends Control
-
-
-func _ready():
-	pass
+# Main menu.
 
 
 func _on_ButtonPlay_pressed():
@@ -18,4 +15,4 @@ func _on_ButtonCreditsLicense_pressed():
 
 
 func _on_ButtonExit_pressed():
-	pass # Replace with function body.
+	get_tree().quit()

@@ -6,6 +6,12 @@ script/source = "extends Node2D
 
 func _ready():
 	SceneManager.goto_scene(\"res://src/scenes/menu.tscn\")
+	# TODO
+	# # Boss level every n levels
+	# # Fix shooting logic
+	# # Fix game state
+	# # Remove unnecessary excessive null checks
+	# # Remove sh**ty random colouring
 "
 
 [node name="Node2D" type="Node2D"]

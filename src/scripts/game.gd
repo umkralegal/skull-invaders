@@ -1,4 +1,5 @@
 extends Node2D
+# Gameplay.
 
 
 enum LevelStates {
@@ -69,7 +70,6 @@ func level_up():
 func update_game():
 	if enemies.empty():
 		level_up()
-	pass
 
 
 func game_over():
@@ -78,7 +78,7 @@ func game_over():
 	get_tree().call_group("is:bullet", "queue_free")
 	$Label.text = "GAME OVER"
 	$Label.show()
-	$Timer.start(5)
+	$Timer.start(4)
 	level_state = LevelStates.GAME_OVER
 
 
